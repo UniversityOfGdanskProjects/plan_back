@@ -20,7 +20,7 @@ jobs:
       with:
         source_file: 'api/' # Folder to copy
         destination_repo: 'UniversityOfGdanskProjects/plan_front' # Target repo
-        destination_folder: 'api/' # Folder where to copy it
+        destination_folder: '/' # Folder where to copy it
         user_email: 'piotr.selak.it@gmail.com'
         user_name: 'piotrselak'
         commit_message: "AUTO: Syncing api folders"
