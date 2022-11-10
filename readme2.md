@@ -1,1 +1,0 @@
-python to narzędzie szatana
