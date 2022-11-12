@@ -1,15 +1,17 @@
-FROM golang:latest
+FROM golang:1.19.3
 
-RUN mkdir /build
+RUN mkdir /app
 
-WORKDIR /build
+WORKDIR /app
 
-RUN export GO111MODULE=ON
-RUN go get https://github.com/UniversityOfGdanskProjects/plan_back/main
-RUN cd /build && git clone https://github.com/UniversityOfGdanskProjects/plan_back.git
+COPY go.mod ./
+COPY go.sum ./
+RUN go mod download
+COPY . . 
 
-RUN cd /build/plan_back/main && go build
+
+RUN go build -o /better-schedule cmd/main.go
 
 EXPOSE 8080
 
-ENTRYPOINT [ "/build/plan_back/main/main" ]
+CMD [ "/better-schedule" ]
