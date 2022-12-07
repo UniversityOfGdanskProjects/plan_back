@@ -1,7 +1,4 @@
-
-FROM golang:1.19.3-alpine
-
-RUN mkdir /app
+FROM golang:alpine AS builder
 
 WORKDIR /app
 
@@ -14,6 +11,9 @@ FROM golang:1.19.3-alpine
 
 RUN go build -o /better-schedule cmd/main.go
 
-EXPOSE 8080
+FROM alpine
+WORKDIR /app
 
-CMD [ "/better-schedule" ]
+COPY --from=builder /app/better-schedule /app/better-schedule
+
+CMD ["./better-schedule"]
