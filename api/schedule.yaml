@@ -181,3 +181,5 @@ components:
       # Schedule as json object in form of { <date>: [{id: 102020, name: lecture1, start_hour: 10:00
       #                                           end_hour: 12:00}]}
       # remember that date is given in format dd-mm-yyyy
+      # take care that the schedules may be wrapped in: eg { <yearID>: { <groupID>: {} } } etc
+      # depending on what you fetch (don't do it on put method)
