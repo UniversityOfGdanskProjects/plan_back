@@ -10,11 +10,35 @@ import (
 )
 
 func FetchScheduleForYear(coll *mongo.Collection, yearID string) (domain.YearSchedule, error) {
+	var result domain.YearSchedule
+	query := bson.D{{"_id", yearID}}
 
+	cursor, err := coll.Find(context.Background(), query)
+	if err != nil {
+		return domain.YearSchedule{}, err
+	}
+
+	err = cursor.Decode(&result)
+	if err != nil {
+		return domain.YearSchedule{}, err
+	}
+
+	return result, nil
+}
+
+func RemoveScheduleForYear(coll *mongo.Collection, yearID string) error {
+	query := bson.D{{"_id", yearID}}
+
+	_, err := coll.DeleteOne(context.Background(), query)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func UpsertScheduleForYear(coll *mongo.Collection, yearID string, schedule domain.YearSchedule) error {
-	query := bson.D{}
+	query := bson.D{{"_id", yearID}}
 
 	_, err := coll.UpdateOne(context.Background(), query, schedule, options.Update().SetUpsert(true))
 	if err != nil {
@@ -24,6 +48,7 @@ func UpsertScheduleForYear(coll *mongo.Collection, yearID string, schedule domai
 	return nil
 }
 
+// below under work
 func FetchScheduleForUser(coll *mongo.Collection,
 	yearID string, groupID string, userID string) (domain.Schedule, error) {
 
@@ -56,20 +81,3 @@ func UpsertScheduleForUser(coll *mongo.Collection,
 
 	return nil
 }
-
-//{
-//	yearID: {
-//		plan {},
-//		grupy: [
-//		id_grupy: {
-//			plan: {
-//
-//			}
-//			users: {
-//				id: {
-//
-//				}
-//			}
-//		}]
-//	}
-//}
