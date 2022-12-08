@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "yearID1",
+    "schedule": {},
+    "groups": [
+      {
+        "id": "groupID1",
+        "schedule": {},
+        "users": [
+          {
+            "id": "userID1",
+            "schedule": {}
+          }
+        ]
+      }
+    ]
+  }
+]
