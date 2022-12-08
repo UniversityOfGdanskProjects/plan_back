@@ -1,15 +1,15 @@
 [
   {
     "_id": "yearID1",
-    "schedule": {},
+    "schedule": {jakies pola},
     "groups": [
       {
         "id": "groupID1",
-        "schedule": {},
+        "schedule": {jakies pola},
         "users": [
           {
             "id": "userID1",
-            "schedule": {}
+            "schedule": {jakies pola}
           }
         ]
       }
