@@ -7,7 +7,7 @@ COPY go.sum ./
 RUN go mod download
 COPY . . 
 
-RUN go build -o /better-schedule cmd/main.go
+RUN go build -o ./better-schedule cmd/main.go
 
 FROM alpine
 WORKDIR /app
